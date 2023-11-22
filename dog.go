@@ -3,6 +3,7 @@ package animals
 import (
 	"errors"
 	"fmt"
+	"log/slog"
 )
 
 type Dog struct {
@@ -12,24 +13,23 @@ type Dog struct {
 }
 
 func NewDog(name string, age int, breed DogBreed) (*Dog, error) {
-	if age < 0 {
-		return nil, errors.New("age cannot be less than zero")
+	if age <= 0 {
+		return nil, errors.New("age must be greater than zero")
 	}
-
 	dog := Dog{
 		Name:     name,
 		age:      age,
 		DogBreed: breed,
 	}
 
-	logger.Info(fmt.Sprintf("New Dog Created %s", dog.Name))
+	slog.Info(fmt.Sprintf("New Dog Created %s", dog.Name))
 	return &dog, nil
 }
 
-func (dog *Dog) Display() {
-	fmt.Printf("Dog\n Name: %s\n Age: %d\n Breed:%s\n", dog.Name, dog.age, dog.DogBreed)
+func (d *Dog) Display() {
+	fmt.Printf("Dog\n Name:%s\n Age:%d\n Breed:%s\n", d.Name, d.age, d.DogBreed)
 }
 
-func (dog *Dog) SetAge(age int) {
-	dog.age = age
+func (d *Dog) SetAge(age int) {
+	d.age = age
 }
