@@ -7,9 +7,9 @@ import (
 )
 
 type Dog struct {
-	Name string
-	Age  int
-	DogBreed
+	Name     string `json:"name"`
+	Age      int    `json:"age"`
+	DogBreed `json:"breed"`
 }
 
 func NewDog(name string, age int, breed DogBreed) (*Dog, error) {
