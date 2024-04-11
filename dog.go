@@ -8,7 +8,7 @@ import (
 
 type Dog struct {
 	Name string
-	age  int
+	Age  int
 	DogBreed
 }
 
@@ -18,7 +18,7 @@ func NewDog(name string, age int, breed DogBreed) (*Dog, error) {
 	}
 	dog := Dog{
 		Name:     name,
-		age:      age,
+		Age:      age,
 		DogBreed: breed,
 	}
 
@@ -27,9 +27,9 @@ func NewDog(name string, age int, breed DogBreed) (*Dog, error) {
 }
 
 func (d *Dog) Display() {
-	fmt.Printf("Dog\n Name:%s\n Age:%d\n Breed:%s\n", d.Name, d.age, d.DogBreed)
+	fmt.Printf("Dog\n Name:%s\n Age:%d\n Breed:%s\n", d.Name, d.Age, d.DogBreed)
 }
 
 func (d *Dog) SetAge(age int) {
-	d.age = age
+	d.Age = age
 }

@@ -24,6 +24,20 @@ func (breed DogBreed) String() string {
 	}
 }
 
+func FromString(breed string) DogBreed {
+	switch breed {
+	case "Corgie":
+		return Corgie
+	case "Frenchie":
+		return Frenchie
+	case "Poodle":
+		return Poodle
+	case "Mutt":
+		return Mutt
+	default:
+		return Corgie
+	}
+}
 func (breed DogBreed) IsMutt() bool {
 	return breed == Mutt
 }
