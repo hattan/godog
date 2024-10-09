@@ -1,5 +1,7 @@
 package animals
 
+import "strings"
+
 type DogBreed int
 
 const (
@@ -25,14 +27,15 @@ func (breed DogBreed) String() string {
 }
 
 func FromString(breed string) DogBreed {
+	breed = strings.ToLower(breed)
 	switch breed {
-	case "Corgi":
+	case "corgi":
 		return Corgi
-	case "Frenchie":
+	case "frenchie":
 		return Frenchie
-	case "Poodle":
+	case "poodle":
 		return Poodle
-	case "Mutt":
+	case "mutt":
 		return Mutt
 	default:
 		return Corgi
