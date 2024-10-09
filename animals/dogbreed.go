@@ -3,7 +3,7 @@ package animals
 type DogBreed int
 
 const (
-	Corgie   DogBreed = 0
+	Corgi    DogBreed = 0
 	Frenchie DogBreed = 1
 	Poodle   DogBreed = 2
 	Mutt     DogBreed = 3
@@ -11,8 +11,8 @@ const (
 
 func (breed DogBreed) String() string {
 	switch breed {
-	case Corgie:
-		return "Corgie"
+	case Corgi:
+		return "Corgi"
 	case Frenchie:
 		return "Frenchie"
 	case Poodle:
@@ -26,8 +26,8 @@ func (breed DogBreed) String() string {
 
 func FromString(breed string) DogBreed {
 	switch breed {
-	case "Corgie":
-		return Corgie
+	case "Corgi":
+		return Corgi
 	case "Frenchie":
 		return Frenchie
 	case "Poodle":
@@ -35,7 +35,7 @@ func FromString(breed string) DogBreed {
 	case "Mutt":
 		return Mutt
 	default:
-		return Corgie
+		return Corgi
 	}
 }
 func (breed DogBreed) IsMutt() bool {
