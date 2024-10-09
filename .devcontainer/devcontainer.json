@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json
+{
+    "name": "godog",
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    // Available base images: https://mcr.microsoft.com/v2/devcontainers/base/tags/list
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu24.04",
+    // Features to add to the dev container. More info: https://containers.dev/features
+    "features": {
+      "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+      "ghcr.io/devcontainers/features/common-utils:2": {
+        "configureZshAsDefaultShell": true
+      },
+      "ghcr.io/devcontainers/features/go:1": {
+        "version": "1.23.2"
+      },
+      "ghcr.io/devcontainers-contrib/features/go-task:1": {},
+    },
+    "onCreateCommand": {
+    },
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": {
+      "git-safe-dir": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+    },
+    // "privileged": true,
+    "remoteUser": "vscode",
+    "remoteEnv": {
+      "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+    },
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "zsh",
+          "terminal.integrated.defaultProfile.osx": "zsh",
+          "powershell.powerShellAdditionalExePaths": {
+            "pwsh": "/usr/local/bin/pwsh"
+          }
+        },
+        "extensions": [
+          "golang.go",
+          "foxundermoon.shell-format",
+          "redhat.vscode-yaml",
+          "task.vscode-task"
+        ]
+      }
+    }
+  }
