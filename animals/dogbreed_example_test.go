@@ -15,7 +15,7 @@ func TestDogBreedFromString(t *testing.T) {
 	//act
 	for _, breed := range breeds {
 		breed = strings.ToLower(breed)
-		dogBreed := FromString(breed)
+		dogBreed, _ := FromString(breed)
 		expected := strings.ToLower(dogBreed.String())
 		assert.Equal(t, breed, expected)
 	}
@@ -23,8 +23,8 @@ func TestDogBreedFromString(t *testing.T) {
 
 // Test invalid dogbreed string returns corgi (default)
 func TestInvalidDogBreedFromStringReturnsCorgi(t *testing.T) {
-	dogBreed := FromString("notavalidbreed")
-	assert.Equal(t, strings.ToLower(dogBreed.String()), "corgi")
+	_, err := FromString("notavalidbreed")
+	assert.Error(t, err, "\"notavalidbreed\" is not a valid dog breed")
 }
 
 // Test that and invalid DogBreed returns unknown
