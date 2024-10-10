@@ -9,9 +9,9 @@ import (
 // Dog is a representation of a dog and contains a name, age, and breed.
 // Don't use this type directly, use NewDog instead.
 type Dog struct {
-	Name     string `json:"name"`
-	Age      int    `json:"age"`
-	DogBreed `json:"breed"`
+	Name  string   `json:"name"`
+	Age   int      `json:"age"`
+	Breed DogBreed `json:"breed"`
 }
 
 // NewDog creates a new instance of Dog with the specified values.
@@ -23,9 +23,9 @@ func NewDog(name string, age int, breed DogBreed) (*Dog, error) {
 		return nil, errors.New("age must be greater than zero")
 	}
 	dog := Dog{
-		Name:     name,
-		Age:      age,
-		DogBreed: breed,
+		Name:  name,
+		Age:   age,
+		Breed: breed,
 	}
 
 	slog.Info(fmt.Sprintf("New Dog Created %s", dog.Name))
@@ -34,7 +34,7 @@ func NewDog(name string, age int, breed DogBreed) (*Dog, error) {
 
 // Display prints the dog's information in a nice format. It's printed to stdout.
 func (d *Dog) Display() {
-	fmt.Printf("Dog\n Name:%s\n Age:%d\n Breed:%s\n", d.Name, d.Age, d.DogBreed)
+	fmt.Printf("Dog\n Name:%s\n Age:%d\n Breed:%s\n", d.Name, d.Age, d.Breed)
 }
 
 // SetAge is a setter method that updates the dog's age.

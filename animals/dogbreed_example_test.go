@@ -38,5 +38,5 @@ func TestInvalidDogBreedToStringReturnsUnknown(t *testing.T) {
 // Test that IsMutt returns true for Mutt
 func TestIsMutt(t *testing.T) {
 	dog, _ := NewDog("Mutty", 5, Mutt)
-	assert.Assert(t, dog.IsMutt())
+	assert.Assert(t, dog.Breed.IsMutt())
 }

@@ -27,6 +27,7 @@ func (breed DogBreed) String() string {
 	key, ok := getBreedKeyByValue(Breed_value, breed)
 	if !ok {
 		slog.Error(fmt.Sprintf("Error DogBreedToString. %d is not a valid breed", breed))
+		return "unknown"
 	}
 	return key
 }

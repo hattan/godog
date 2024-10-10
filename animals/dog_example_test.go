@@ -16,7 +16,7 @@ func TestNewDog(t *testing.T) {
 	assert.NilError(t, err, "Expected no error, got %v", err)
 	assert.Equal(t, "Fido", dog.Name, "Expected name to be 'Fido', got %s", dog.Name)
 	assert.Equal(t, 5, dog.Age, "Expected age to be 5, got %d", dog.Age)
-	assert.Equal(t, Corgi, dog.DogBreed, "Expected breed to be Corgi, got %v", dog.DogBreed)
+	assert.Equal(t, Corgi, dog.Breed, "Expected breed to be Corgi, got %v", dog.Breed)
 }
 
 // Test creating a new dog with invalid age
@@ -54,19 +54,19 @@ func TestDogBreedUnmarshalJSON(t *testing.T) {
 	// arrange
 	expectedName := "new test dog"
 	expectedAge := 7
-	expectedBreed := "frenchie"
+	expectedBreed := Frenchie
 	var jsonContent = `{
 		"name" : "new test dog",
 		"age" : 7,
 		"breed": "frenchie"
 	}`
 	// act
-	var dog Dog
+	var dog *Dog
 	bytes := []byte(jsonContent)
 	json.Unmarshal(bytes, &dog)
 
 	// assert
-	assert.Equal(t, expectedName, dog.DogBreed)
-	assert.Equal(t, expectedAge, dog.DogBreed)
-	assert.Equal(t, expectedBreed, dog.DogBreed)
+	assert.Equal(t, expectedName, dog.Name)
+	assert.Equal(t, expectedAge, dog.Age)
+	assert.Equal(t, expectedBreed, dog.Breed)
 }
