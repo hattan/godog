@@ -1,6 +1,7 @@
 package animals
 
 import (
+	"encoding/json"
 	"testing"
 
 	"gotest.tools/assert"
@@ -46,4 +47,26 @@ func TestDogDisplay(t *testing.T) {
 
 	// act
 	dog.Display()
+}
+
+// Test that the dog's breed is un-marshalled correctly
+func TestDogBreedUnmarshalJSON(t *testing.T) {
+	// arrange
+	expectedName := "new test dog"
+	expectedAge := 7
+	expectedBreed := "frenchie"
+	var jsonContent = `{
+		"name" : "new test dog",
+		"age" : 7,
+		"breed": "frenchie"
+	}`
+	// act
+	var dog Dog
+	bytes := []byte(jsonContent)
+	json.Unmarshal(bytes, &dog)
+
+	// assert
+	assert.Equal(t, expectedName, dog.DogBreed)
+	assert.Equal(t, expectedAge, dog.DogBreed)
+	assert.Equal(t, expectedBreed, dog.DogBreed)
 }
