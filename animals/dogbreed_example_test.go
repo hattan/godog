@@ -1,6 +1,7 @@
 package animals
 
 import (
+	"encoding/json"
 	"strings"
 	"testing"
 
@@ -39,4 +40,48 @@ func TestInvalidDogBreedToStringReturnsUnknown(t *testing.T) {
 func TestIsMutt(t *testing.T) {
 	dog, _ := NewDog("Mutty", 5, Mutt)
 	assert.Assert(t, dog.Breed.IsMutt())
+}
+
+// Test that the dog's breed is un-marshalled correctly
+func TestDogBreedInvalidBreedName(t *testing.T) {
+	// arrange
+	var jsonContent = `{
+		"name" : "new test dog",
+		"age" : 7,
+		"breed": "FakeBreed"
+	}`
+	// act
+	var dog *Dog
+	bytes := []byte(jsonContent)
+	err := json.Unmarshal(bytes, &dog)
+
+	// assert
+	assert.Error(t, err, "\"fakebreed\" is not a valid dog breed")
+}
+
+func TestDogBreedInvalidBreedValue(t *testing.T) {
+	// arrange
+	var jsonContent = `{
+		"name" : "new test dog",
+		"age" : 7,
+		"breed": 2
+	}`
+	// act
+	var dog *Dog
+	bytes := []byte(jsonContent)
+	err := json.Unmarshal(bytes, &dog)
+
+	// assert
+	assert.Error(t, err, "json: cannot unmarshal number into Go struct field Dog.breed of type string")
+}
+
+func TestDogBreedMarshalJson(t *testing.T) {
+	// arrange
+	dogBreed := Corgi
+	// act
+	bytes, _ := json.Marshal(dogBreed)
+
+	str := string(bytes)
+	// assert
+	assert.Equal(t, "\"corgi\"", str)
 }
